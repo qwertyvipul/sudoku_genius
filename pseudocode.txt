@@ -1,0 +1,3 @@
+OBJECTIVE FINDING A SOLUTION
+1. input unsolved sudoku
+2. 
