@@ -1,44 +1,40 @@
-#include "prob_list.cpp"
 typedef struct EmptyList{
-	int index;
-	struct EmptyList* next;
-	PListptr plink;
+	int index; //the value of the index
+	struct EmptyList* prev;
+	struct EmptyList* next; //pointer to the next empty index
+	PNodeptr plink; //pointer to the probability list for the index
 }ENode;
 
 typedef struct EmptyList* ENodeptr;
 #define EBOX (ENodeptr)malloc(sizeof(ENode))
 
 
-ENodeptr createEmptyList(int puzzle[]){
-	int flag = 1;
+ENodeptr createEmptyList(int puzzle[]){ //create the empty list
+	cout<<"STEP - 3: Creating the empty index list"<<endl;
+	int flag = 1; //to check if head exists or not
 	ENodeptr head, temp;
-	for(int i=0; i<81; i++){
-		if(puzzle[i]==0){
-			ENodeptr node = EBOX;
-			node->index = i;
-			node->next = NULL;
+	for(int index=0; index<81; index++){
+		if(puzzle[index]==0){ //if index is 0 i.e it is empty
+			//cout<<"INDEX = "<<index<<endl;
+			ENodeptr node = EBOX; //create a node for empty list
+			node->index = index; //index of the node will be the empty index
+			node->next = NULL; //next link is null as for now
 	
-			phead = createProbList(i, puzzle);
-			node->plink = phead;
+			//STEP-3.1
+			PNodeptr pHead;
+			pHead = createProbList(index, puzzle); //create the probabilty list and get the head pointer
+			node->plink = pHead; //store the head in the empty list
 			
-			if(flag){
-				head = node;
-				flag = 0;
+			if(flag){ //if head is not created
+				node->prev = NULL;
+				head = node; //assign the head will point towards the first node
+				flag = 0; //head is created
 			}else{
-				temp->next = node;
+				node->prev = temp;
+				temp->next = node; //previous node will point towards the current node
 			}
-			temp = node;
+			temp = node; //store the node in temp
 		}
 	}
-	return head;
-}
-
-int countEmptyIndexes(ENodeptr node){
-	int total=0;
-	while(node != NULL){
-		total++;
-		cout<<node->index/9+1<<" - "<<node->index%9+1<<endl;
-		node = node->next;
-	}
-	return total;
+	return head; //return the head of the empty list
 }
