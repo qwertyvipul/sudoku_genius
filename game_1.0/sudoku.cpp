@@ -10,6 +10,8 @@ class Sudoku{
 		ENodeptr getEHead();
 };
 
+
+//constructor to initliaze the class with the puzzle
 Sudoku::Sudoku(int puzzle[]){
 	cout<<"STEP - 1: Instance of sudoku class created!"<<endl;
 	for(int i=0; i<81; i++){
@@ -18,6 +20,8 @@ Sudoku::Sudoku(int puzzle[]){
 	//cout<<"Great! A new Puzzle."<<endl;
 }
 
+
+//this function will solve the sudoku
 void Sudoku::solve(){
 	cout<<"STEP - 2: sudoku.solve() function called!"<<endl;
 	//cout<<"Solving the puzzle..."<<endl;
@@ -25,34 +29,35 @@ void Sudoku::solve(){
 	
 	//STEP-3
 	this->eHead = createEmptyList(puzzle); //create a list of all the empty indexes
-	int flag=1;
+	int flag=1; //check if an entry is made
 	while(flag==1){
 		flag=0;
 		ENodeptr eNode = this->eHead;
 		
-		if(eNode->next == NULL){
+		if(eNode->next == NULL){ //if only one node i.e last entry
 			this->puzzle[eNode->index] = eNode->plink->value;
 			break;
 		}
 		
 		while(eNode!=NULL){
 			int probCount = countProb(eNode->plink);
-			if(probCount==1){
-				this->puzzle[eNode->index] = eNode->plink->value;
+			if(probCount==1){ //if only one probable value
+				this->puzzle[eNode->index] = eNode->plink->value; //update the puzzle
 				//eNode->prev->next = eNode->next;
 				//eNode->next->prev = eNode->prev;
-				this->eHead = createEmptyList(this->puzzle);
+				this->eHead = createEmptyList(this->puzzle); //create fresh empty list
 				eNode = NULL;
 				flag=1;
 			}else{
-				eNode = eNode->next;
+				eNode = eNode->next; //check for the next node
 			}
 		}
-		printProbList();
+		//printProbList();
 	}
 }
 
 
+//this function prints all the empty indexes at any instant in the puzzle
 void Sudoku::printEmptyIndexes(){
 	ENodeptr node;
 	node = this->eHead;
@@ -66,6 +71,8 @@ void Sudoku::printEmptyIndexes(){
 	cout<<"\nTotal = "<<total<<endl;
 }
 
+
+//this function prints the probability list at any instant of the puzzle
 void Sudoku::printProbList(){
 	ENodeptr node = this->eHead;
 	while(node!=NULL){
@@ -80,6 +87,8 @@ void Sudoku::printProbList(){
 	}
 }
 
+
+//this function prints the puzzle at any instant
 void Sudoku::print(){ //prints the sudoku state at any instance
 	cout<<"***********PUZZLE***********"<<endl;
 	for(int i=0; i<9; i++){

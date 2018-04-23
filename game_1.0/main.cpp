@@ -3,11 +3,15 @@
 
 using namespace std;
 
+
+//forward declaration of the functions
 int checkIndex(int value, int index, int[81]); //check the probability of a value at the given index
 int checkRow(int value, int index, int[]); //check the probability of a value in the row of the index
 int checkCol(int value, int index, int[]); //check the probability of a value in the column of the index
 int checkBox(int value, int index, int[]); //check the probability of a value in the 3x3 box containing the index
 
+
+//do not change the order of file inclusion
 #include "prob_list.cpp" //include probaility list
 #include "empty_list.cpp" //include empty list
 #include "sudoku.cpp" //incldue sudoku class
@@ -26,14 +30,9 @@ int main(){
 		7, 0, 0, 0, 1, 0, 3, 9, 0
 	};
 	
-	//STEP-1
+	
 	Sudoku sudoku(puzzle); //create the sudoku class
-	sudoku.print();
-	//STEP-2
+	cout<<"Unsolved Sudoku"<<endl; sudoku.print();
 	sudoku.solve(); //start solving the sudoku
-	//sudoku.printEmptyIndexes();
-	sudoku.printProbList();
-	
-	
-	sudoku.print(); //print the sudoku state
+	cout<<"Solved Sudoku"<<endl; sudoku.print(); //print the sudoku state
 }

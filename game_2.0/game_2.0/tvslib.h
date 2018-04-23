@@ -3,6 +3,37 @@
 
 
 //************************************************************//
+//ProbList to to store the probable values for given index
+typedef struct ProbList { //the probabilty list for each index
+	int value; //the probable value
+	struct ProbList* prev;
+	struct ProbList* next; //points to next value
+}PNode;
+
+typedef PNode* PNodeptr;
+#define PBOX (PNodeptr)malloc(sizeof(PNode))
+
+PNodeptr createProbList(int index, int puzzle[]);
+int countProb(PNodeptr node);
+//xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx//
+
+
+//************************************************************//
+//Emptylist to store the all empty index and probability links
+typedef struct EmptyList {
+	int index; //the value of the index
+	struct EmptyList* prev;
+	struct EmptyList* next; //pointer to the next empty index
+	PNodeptr plink; //pointer to the probability list for the index
+}ENode;
+
+typedef ENode* ENodeptr;
+#define EBOX (ENodeptr)malloc(sizeof(ENode))
+//xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx//
+
+
+
+//************************************************************//
 //Sudoku class for puzzle empty list and probability map
 class Sudoku {
 	int puzzle[81]; //the puzzle to be dealt with
@@ -38,36 +69,7 @@ public:
 };
 //xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx//
 
-
-//************************************************************//
-//Emptylist to store the all empty index and probability links
-typedef struct EmptyList {
-	int index; //the value of the index
-	struct EmptyList* prev;
-	struct EmptyList* next; //pointer to the next empty index
-	PNodeptr plink; //pointer to the probability list for the index
-}ENode;
-
-typedef ENode* ENodeptr;
-#define EBOX (ENodeptr)malloc(sizeof(ENode))
-
 ENodeptr createEmptyList(Sudoku* sudoku);
-//xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx//
 
-
-//************************************************************//
-//ProbList to to store the probable values for given index
-typedef struct ProbList { //the probabilty list for each index
-	int value; //the probable value
-	struct ProbList* prev;
-	struct ProbList* next; //points to next value
-}PNode;
-
-typedef PNode* PNodeptr;
-#define PBOX (PNodeptr)malloc(sizeof(PNode))
-
-PNodeptr createProbList(int index, int puzzle[]);
-int countProb(PNodeptr node);
-//xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx//
 
 #endif

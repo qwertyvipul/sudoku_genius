@@ -11,20 +11,3 @@
 3. We then check the box of for the missing numbers
 4. Then we take into account all the probable numbers that could fill a particular box
 5. If the number of probable numbers is one we input the number into the box and repeat from Step - 1
-
-/*HOW THE PROGRAM IS GOING TO WORK*/
-1. We are going to give the program an integer array of 81 numbers separated by commas
-	-> Using array for faster access
-2. If the number is 0 it is an unfilled box otherwise it is filled with the given number
-3. Now we will create a linked list for unfilled links
-	-> Using linked list for improved traversals
-	i. index number
-	ii. next link
-	iii. probability list link
-		-> probable data
-		-> next link
-	iv. filed row link
-	v. 
-4. We will traverse the unfilled link list over and over and -
-	1. Remove the un-probable values from probability link
-	2. If number of probable value = 1 insert into the sudoko matrix

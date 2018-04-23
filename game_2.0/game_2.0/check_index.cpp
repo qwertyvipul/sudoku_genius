@@ -34,10 +34,11 @@ int CheckIndex::checkCol() {
 
 int CheckIndex::checkBox() {
 	int index = this->index, value = this->value;
-	for (int rownum = (index / 27) * 3; rownum<(index / 27) * 3 + 3; rownum++) {
-		for (int colnum = (index % 9) - (index % 3); colnum<((index % 9) - (index % 3)) + 3; colnum++) {
+	for (int rownum = (index / 27) * 3; rownum < (index / 27) * 3 + 3; rownum++) {
+		for (int colnum = (index % 9) - (index % 3); colnum < ((index % 9) - (index % 3)) + 3; colnum++) {
 			int bindex = rownum * 9 + colnum; //this will give all the indexes for the 3x3 box containing the given index
 			if (this->puzzle[bindex] == value) return 0; //returns 0 if the value is already present in the box
 		}
 		return 1;
 	}
+}
