@@ -1,3 +1,5 @@
+### Working
+
 01. The game starts
 02. Create an instance of the sudoku class and initiate it with puzzle using a constructor
 03. Print the unsolved sudoku
