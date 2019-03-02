@@ -1,4 +1,5 @@
 #include<iostream>
+#include<conio.h>
 #include<stdlib.h>
 
 using namespace std;
@@ -35,4 +36,5 @@ int main(){
 	cout<<"Unsolved Sudoku"<<endl; sudoku.print();
 	sudoku.solve(); //start solving the sudoku
 	cout<<"Solved Sudoku"<<endl; sudoku.print(); //print the sudoku state
+	getch()
 }
